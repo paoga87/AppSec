@@ -4,19 +4,16 @@
 
 #define DICTIONARY "wordlist.txt"
 
-START_TEST(test_check_word_normal)
-{
+START_TEST(test_check_word_normal) {
     hashmap_t hashtable[HASH_SIZE];
     load_dictionary(DICTIONARY, hashtable);
     const char* correct_word = "Justice";
     const char* incorrect_word = "Caoimhín";
     ck_assert(check_word(correct_word, hashtable));
     ck_assert(!check_word(incorrect_word, hashtable));
-}
-END_TEST
+} END_TEST
 
-START_TEST(test_check_word_buffer_overflow)
-{
+START_TEST(test_check_word_buffer_overflow) {
     hashmap_t hashtable[HASH_SIZE];
     load_dictionary(DICTIONARY, hashtable);
     char incorrect_word[500000];
@@ -24,12 +21,9 @@ START_TEST(test_check_word_buffer_overflow)
         incorrect_word[i] = 'A';
     incorrect_word[499999] = 0;
     ck_assert(!check_word(incorrect_word, hashtable));
-}
-END_TEST
+} END_TEST
 
-Suite *
-check_word_suite(void)
-{
+Suite *check_word_suite(void) {
     Suite * suite;
     TCase * check_word_case;
     suite = suite_create("check_word");
@@ -41,9 +35,7 @@ check_word_suite(void)
     return suite;
 }
 
-int
-main(void)
-{
+int main(void) {
     int failed;
     Suite *suite;
     SRunner *runner;
