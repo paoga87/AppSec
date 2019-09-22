@@ -1,4 +1,5 @@
-language: compiler
+os: linux
+language: c
 before install:
   - sudo apt-get update
   - sudo apt-get install -y check
