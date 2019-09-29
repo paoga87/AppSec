@@ -37,7 +37,7 @@ START_TEST(test_dictionary_normal)
 }
 END_TEST
 
-START_TEST(test_check_word_normal)
+START_TEST(test_check_word_normal2)
 {
     hashmap_t hashtable[HASH_SIZE];
     load_dictionary(TESTDICTIONARY, hashtable);
@@ -58,6 +58,7 @@ Suite *check_word_suite(void) {
     suite = suite_create("check_word");
     check_word_case = tcase_create("Core");
     tcase_add_test(check_word_case, test_check_word_normal);
+    tcase_add_test(check_word_case, test_check_word_normal2);
     tcase_add_test(check_word_case, test_check_word_buffer_overflow);
     suite_add_tcase(suite, check_word_case);
 
