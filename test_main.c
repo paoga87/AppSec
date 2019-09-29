@@ -24,6 +24,18 @@ START_TEST(test_check_word_buffer_overflow) {
     ck_assert(!check_word(incorrect_word, hashtable));
 } END_TEST
 
+START_TEST(test_check_word_buffer_overflow2)
+{
+    hashmap_t hashtable[HASH_SIZE];
+    load_dictionary(TESTDICT, hashtable);
+    char incorrect_word[500000];
+    for (int i=0;i< 499999; i++) 
+        incorrect_word[i] = 'A';
+    incorrect_word[56] = '\0'; //57 break
+    ck_assert(!check_word(incorrect_word, hashtable));
+}
+END_TEST
+
 START_TEST(test_dictionary_normal)
 {
     hashmap_t hashtable[HASH_SIZE];
@@ -61,6 +73,7 @@ Suite *check_word_suite(void) {
     tcase_add_test(check_word_case, test_check_word_normal2);
     tcase_add_test(check_word_case, test_dictionary_normal);
     tcase_add_test(check_word_case, test_check_word_buffer_overflow);
+    tcase_add_test(check_word_case, test_check_word_buffer_overflow2);
     suite_add_tcase(suite, check_word_case);
 
     return suite;
