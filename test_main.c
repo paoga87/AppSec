@@ -27,11 +27,11 @@ START_TEST(test_check_word_buffer_overflow) {
 START_TEST(test_check_word_buffer_overflow2)
 {
     hashmap_t hashtable[HASH_SIZE];
-    load_dictionary(TESTDICT, hashtable);
+    load_dictionary(TESTDICTIONARY, hashtable);
     char incorrect_word[500000];
     for (int i=0;i< 499999; i++) 
         incorrect_word[i] = 'A';
-    incorrect_word[56] = '\0'; //57 break
+    incorrect_word[56] = '\0'; // 57 break
     ck_assert(!check_word(incorrect_word, hashtable));
 }
 END_TEST
